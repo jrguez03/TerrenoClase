@@ -28,8 +28,38 @@ public class Disparo : MonoBehaviour
         }
     }
 
-    /*public GameObject ObtenerObjeto()
+    public GameObject ObtenerObjeto()
     {
         GameObject bala = null;
-    }*/
+        if (d_Stack.Count == 0)
+        {
+            GameObject disparoCreado = Instantiate(d_ACrear);
+            return disparoCreado;
+        }
+        else
+        {
+            bala = d_Stack.Pop();
+            bala.SetActive(true);
+        }
+
+        return bala;
+    }
+
+    public void DevolverObjeto(GameObject balaDevuelta)
+    {
+        d_Stack.Push(balaDevuelta);
+        balaDevuelta.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 }
