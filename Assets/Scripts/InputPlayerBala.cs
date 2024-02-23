@@ -5,7 +5,13 @@ using UnityEngine;
 public class InputPlayerBala : MonoBehaviour
 {
     Disparo d_Stack;
+    public float d_Fuerza = 10f;
+    Vector3 d_Impulso;
 
+    private void Start()
+    {
+        d_Impulso = Vector3.forward * d_Fuerza;
+    }
     void Awake()
     {
         d_Stack = GetComponent<Disparo>();
@@ -18,8 +24,8 @@ public class InputPlayerBala : MonoBehaviour
         {
             GameObject bala = d_Stack.ObtenerObjeto();
             bala.transform.position = transform.position;
-            bala.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            bala.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 5f, 5f), ForceMode.Impulse);
+            bala.GetComponent<Rigidbody>().velocity = d_Impulso;
+            bala.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
         }
     }
 }

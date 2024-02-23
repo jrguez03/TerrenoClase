@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Disparo : MonoBehaviour
 {
-    [SerializeField] int d_MaxElements = 50;
+    [SerializeField] int d_MaxElements = 5;
     [SerializeField] GameObject d_ACrear;
 
     private Stack<GameObject> d_Stack;
