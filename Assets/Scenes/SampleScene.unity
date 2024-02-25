@@ -22806,6 +22806,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bala
       objectReference: {fileID: 0}
+    - target: {fileID: 7197148862116220237, guid: 7c725b50da89fc246a342724b244042a,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
