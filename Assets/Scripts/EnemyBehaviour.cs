@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
+    [SerializeField] ParticleSystem e_Explotion;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        e_Explotion.Stop();
     }
 
     // Update is called once per frame
@@ -20,6 +22,8 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bala player"))
         { 
+            e_Explotion.transform.position = transform.position;
+            e_Explotion.Play();
             Destroy(this.gameObject);
         }
     }

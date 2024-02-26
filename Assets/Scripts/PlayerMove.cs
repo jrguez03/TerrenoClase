@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     Disparo d_Stack;
+    [SerializeField] ParticleSystem p_Explotion;
 
     public float p_Speed = 20f;
     public float p_Sensitivity = 1f;
@@ -26,6 +27,7 @@ public class PlayerMove : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         //Vectores para el disparo.
         d_Impulso = Vector3.forward * d_Fuerza;
+        p_Explotion.Stop();
     }
 
     void Awake()
@@ -81,4 +83,21 @@ public class PlayerMove : MonoBehaviour
             bala.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Terreno"))
+        {
+            p_Explotion.transform.position = transform.position;
+            p_Explotion.Play();
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            p_Explotion.transform.position = transform.position;
+            p_Explotion.Play();
+            Destroy(this.gameObject);
+        }
+    }
+
 }
