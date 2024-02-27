@@ -6,6 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     Disparo d_Stack;
     [SerializeField] ParticleSystem p_Explotion;
+    [SerializeField] GameObject p_Canon1;
+    [SerializeField] GameObject p_Canon2;
 
     public float p_Speed = 20f;
     public float p_Sensitivity = 1f;
@@ -78,9 +80,13 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             GameObject bala = d_Stack.ObtenerObjeto();
-            bala.transform.position = transform.position;
+            GameObject bala2 = d_Stack.ObtenerObjeto();
+            bala.transform.position = p_Canon1.transform.position;
+            bala2.transform.position = p_Canon2.transform.position;
             bala.GetComponent<Rigidbody>().velocity = transform.forward * d_Fuerza;
+            bala2.GetComponent<Rigidbody>().velocity = transform.forward * d_Fuerza;
             bala.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
+            bala2.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
@@ -99,5 +105,4 @@ public class PlayerMove : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
 }
