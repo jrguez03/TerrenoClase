@@ -15,9 +15,6 @@ public class BalaBehaviour : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             Disparo.instance.DevolverObjeto(this.gameObject);
-            Disparo.instance2.DevolverObjeto2(this.gameObject);
-            Disparo.instance3.DevolverObjeto3(this.gameObject);
-            Disparo.instance4.DevolverObjeto4(this.gameObject);
         }
     }
 

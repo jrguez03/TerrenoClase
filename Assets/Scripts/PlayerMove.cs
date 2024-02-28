@@ -4,37 +4,24 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    Disparo d_Stack;
     [SerializeField] ParticleSystem p_Explotion;
-    [SerializeField] GameObject p_Canon1;
-    [SerializeField] GameObject p_Canon2;
+    [SerializeField] GameObject p_Spawn;
 
     public float p_Speed = 20f;
     public float p_Sensitivity = 1f;
     public float p_MinSpeed = 20f;
     public float p_MaxSpeed = 120f;
-    public float p_Aceleration = 10f; 
-    public float d_Fuerza = 50f;
-    public float d_MinFuerza = 50f;
-    public float d_MaxFuerza = 150f;
-    public float d_AceleracionFuerza = 10f;
+    public float p_Aceleration = 10f;
 
     Vector2 p_turn;
     Vector3 p_Movement;
-    Vector3 d_Impulso;
     // Start is called before the first frame update
     void Start()
     {
         //La nave seguirá el cursor.
         Cursor.lockState = CursorLockMode.Locked;
-        //Vectores para el disparo.
-        d_Impulso = Vector3.forward * d_Fuerza;
-        p_Explotion.Stop();
-    }
 
-    void Awake()
-    {
-        d_Stack = GetComponent<Disparo>();
+        p_Explotion.Stop();
     }
 
     // Update is called once per frame
@@ -52,41 +39,24 @@ public class PlayerMove : MonoBehaviour
         //Determino en qué ejes puede acelerar la nave.
         p_Movement.Set(0f, 0f, vertical);
 
-        //Aceleración y frenado + Fuerza de la bala.
+        //Aceleración y frenado.
         if (Input.GetKey(KeyCode.W))
         {
             p_Speed += p_Aceleration * Time.deltaTime;
-            d_Fuerza += d_AceleracionFuerza * Time.deltaTime;
 
             if (p_Speed >= p_MaxSpeed)
             {
                 p_Speed = p_MaxSpeed;
-                d_Fuerza = d_MaxFuerza;
             }
         }
         else if (Input.GetKey(KeyCode.S))
         {
             p_Speed -= p_Aceleration * Time.deltaTime;
-            d_Fuerza -= d_AceleracionFuerza * Time.deltaTime;
 
             if (p_Speed <= p_MinSpeed)
             {
                 p_Speed = p_MinSpeed;
-                d_Fuerza = d_MinFuerza;
             }
-        }
-
-        //Input de disparo del jugador.
-        if (Input.GetButtonUp("Fire1"))
-        {
-            GameObject bala = d_Stack.ObtenerObjeto();
-            GameObject bala2 = d_Stack.ObtenerObjeto();
-            bala.transform.position = p_Canon1.transform.position;
-            bala2.transform.position = p_Canon2.transform.position;
-            bala.GetComponent<Rigidbody>().velocity = transform.forward * d_Fuerza;
-            bala2.GetComponent<Rigidbody>().velocity = transform.forward * d_Fuerza;
-            bala.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
-            bala2.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
@@ -96,13 +66,22 @@ public class PlayerMove : MonoBehaviour
         {
             p_Explotion.transform.position = transform.position;
             p_Explotion.Play();
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            Invoke("ResetPlayer", 2f);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
             p_Explotion.transform.position = transform.position;
             p_Explotion.Play();
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            Invoke("ResetPlayer", 2f);
         }
+    }
+
+    void ResetPlayer()
+    {
+        this.gameObject.SetActive(true);
+        this.gameObject.transform.position = p_Spawn.transform.position;
+        p_Speed = p_MinSpeed;
     }
 }
