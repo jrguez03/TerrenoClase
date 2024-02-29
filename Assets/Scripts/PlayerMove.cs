@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] ParticleSystem p_Explotion;
+    [SerializeField] ParticleSystem p_Explosion;
     [SerializeField] GameObject p_Spawn;
+    [SerializeField] AudioSource p_FlySource;
+    [SerializeField] AudioSource p_ExplosionSource;
 
     public float p_Speed = 20f;
     public float p_Sensitivity = 1f;
     public float p_MinSpeed = 20f;
     public float p_MaxSpeed = 120f;
-    public float p_Aceleration = 10f;
+    public float p_Aceleration = 20f;
 
     Vector2 p_turn;
     Vector3 p_Movement;
@@ -21,7 +23,9 @@ public class PlayerMove : MonoBehaviour
         //La nave seguirá el cursor.
         Cursor.lockState = CursorLockMode.Locked;
 
-        p_Explotion.Stop();
+        p_Explosion.Stop();
+
+        p_FlySource.Play();
     }
 
     // Update is called once per frame
@@ -64,15 +68,16 @@ public class PlayerMove : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Terreno"))
         {
-            p_Explotion.transform.position = transform.position;
-            p_Explotion.Play();
+            p_Explosion.transform.position = transform.position;
+            p_Explosion.Play();
+            p_ExplosionSource.Play();
             this.gameObject.SetActive(false);
             Invoke("ResetPlayer", 2f);
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            p_Explotion.transform.position = transform.position;
-            p_Explotion.Play();
+            p_Explosion.transform.position = transform.position;
+            p_Explosion.Play();
             this.gameObject.SetActive(false);
             Invoke("ResetPlayer", 2f);
         }

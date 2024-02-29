@@ -5,7 +5,8 @@ using UnityEngine;
 public class BalaBehaviour : MonoBehaviour
 {
     float b_Time = 0.0f;
-    [SerializeField] float b_LifeTime = 2f;
+    [SerializeField] float b_LifeTime = 5f;
+    [SerializeField] AudioSource b_HitSource;
 
     // Update is called once per frame
     void Update()
@@ -21,5 +22,19 @@ public class BalaBehaviour : MonoBehaviour
     void OnEnable()
     {
         b_Time = 0.0f;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Terreno"))
+        {
+            b_HitSource.Play();
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            b_HitSource.Play();
+            Destroy(this.gameObject);
+        }
     }
 }

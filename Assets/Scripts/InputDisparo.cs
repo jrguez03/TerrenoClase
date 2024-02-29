@@ -9,10 +9,12 @@ public class InputDisparo : MonoBehaviour
     [SerializeField] GameObject p_Canon;
     [SerializeField] GameObject p_Canon2;
 
-    public float d_Fuerza = 50f;
-    public float d_MinFuerza = 50f;
-    public float d_MaxFuerza = 150f;
-    public float d_AceleracionFuerza = 10f;
+    [SerializeField] AudioSource d_Source;
+
+    public float d_Fuerza = 70f;
+    public float d_MinFuerza = 70f;
+    public float d_MaxFuerza = 170f;
+    public float d_AceleracionFuerza = 20f;
 
     Vector3 d_Impulso;
     // Start is called before the first frame update
@@ -61,6 +63,7 @@ public class InputDisparo : MonoBehaviour
             bala2.GetComponent<Rigidbody>().velocity = p_Canon2.transform.forward * d_Fuerza;
             bala.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
             bala2.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
+            d_Source.Play();
         }
     }
 }

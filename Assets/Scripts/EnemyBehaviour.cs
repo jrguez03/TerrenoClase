@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] ParticleSystem e_Explotion;
+    [SerializeField] ParticleSystem e_Explosion;
+    [SerializeField] AudioSource e_ExplosionSource;
+
+    public float e_Vida = 4;
 
     // Start is called before the first frame update
     void Start()
     {
-        e_Explotion.Stop();
+        e_Explosion.Stop();
     }
 
     // Update is called once per frame
@@ -22,9 +25,14 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bala player"))
         { 
-            e_Explotion.transform.position = transform.position;
-            e_Explotion.Play();
-            Destroy(this.gameObject);
+            e_Vida = e_Vida - 1;
+            if (e_Vida <= 0)
+            {
+                e_Explosion.transform.position = transform.position;
+                e_Explosion.Play();
+                e_ExplosionSource.Play();
+                Destroy(this.gameObject);
+            }
         }
     }
 }

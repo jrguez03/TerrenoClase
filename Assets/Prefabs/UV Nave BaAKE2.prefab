@@ -25,13 +25,13 @@ Transform:
   m_GameObject: {fileID: 953677694530805908}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.87, y: 0.346, z: 3.88}
+  m_LocalPosition: {x: 1, y: 0.725, z: 3.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7649129876075149072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4067342398248575366
+--- !u!1 &1052220837848764340
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4686656009249933455}
+  - component: {fileID: 8311045788243962056}
   m_Layer: 0
   m_Name: Canon2
   m_TagString: Untagged
@@ -47,16 +47,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4686656009249933455
+--- !u!4 &8311045788243962056
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4067342398248575366}
+  m_GameObject: {fileID: 1052220837848764340}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.853, y: 0.346, z: 3.88}
+  m_LocalPosition: {x: -1, y: 0.725, z: 3.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,7 +96,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3.36}
+  m_AnchoredPosition: {x: 0, y: 2.67}
   m_SizeDelta: {x: 2.2692, y: 3.5624}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5593023692877834319
@@ -345,7 +345,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0cba41849150de24ea4a79d8651fe5e0,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4686656009249933455}
+      addedObject: {fileID: 8311045788243962056}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cba41849150de24ea4a79d8651fe5e0,
         type: 3}
@@ -375,17 +375,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p_Explotion: {fileID: 0}
-  p_Canon1: {fileID: 953677694530805908}
-  p_Canon2: {fileID: 4067342398248575366}
+  p_Spawn: {fileID: 0}
+  p_FlySource: {fileID: 0}
   p_Speed: 20
   p_Sensitivity: 1
   p_MinSpeed: 20
   p_MaxSpeed: 120
   p_Aceleration: 10
-  d_Fuerza: 50
-  d_MinFuerza: 50
-  d_MaxFuerza: 150
-  d_AceleracionFuerza: 10
 --- !u!65 &2404077369280946470
 BoxCollider:
   m_ObjectHideFlags: 0
