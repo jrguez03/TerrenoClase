@@ -28,7 +28,6 @@ public class BalaBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Terreno"))
         {
-            b_HitSource.Play();
             Destroy(this.gameObject);
         }
         if (other.gameObject.CompareTag("Enemy"))

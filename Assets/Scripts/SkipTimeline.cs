@@ -5,24 +5,23 @@ using UnityEngine.Playables;
 
 public class SkipTimeline : MonoBehaviour
 {
-    [SerializeField] private PlayableDirector t_TimeLine;
+    [SerializeField]
+    private PlayableDirector playableDirector;
+    public float skip = 1040f;
+    /*Skips animation*/
 
-    bool t_CinematicSkip = false;
-
-    // Start is called before the first frame update
-    public void SkipCinematic(float time)
+    public void Skip(float time)
     {
-        t_TimeLine.time = time;
-        t_TimeLine.Play();
+        playableDirector.Play();
+        playableDirector.time = time;
+        playableDirector.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && t_CinematicSkip == false) 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            SkipCinematic(1040f);
-            t_CinematicSkip = true;
+            Skip(skip);
         }
     }
 }
