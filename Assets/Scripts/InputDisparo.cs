@@ -14,7 +14,7 @@ public class InputDisparo : MonoBehaviour
 
     public float d_Fuerza = 70f;
     public float d_MinFuerza = 70f;
-    public float d_MaxFuerza = 170f;
+    public float d_MaxFuerza = 120f;
     public float d_AceleracionFuerza = 20f;
 
     Vector3 d_Impulso;

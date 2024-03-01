@@ -6,17 +6,18 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] ParticleSystem p_Explosion;
     [SerializeField] GameObject p_Spawn;
+    [SerializeField] GameObject p_Disparo;
     [SerializeField] AudioSource p_FlySource;
     [SerializeField] AudioSource p_ExplosionSource;
 
     public float p_Speed = 20f;
     public float p_Sensitivity = 1f;
     public float p_MinSpeed = 20f;
-    public float p_MaxSpeed = 120f;
+    public float p_MaxSpeed = 70f;
     public float p_Aceleration = 20f;
     public float p_PowerUpSpeed = 20f;
-    public float p_PowerUpResetDuration = 5f;
-    public float p_PowerUpDuration = 5f;
+    public float p_PowerUpResetDuration = 1f;
+    public float p_PowerUpDuration = 1f;
     public float p_SaveSpeed;
 
     bool p_PowerUp = false;
@@ -74,6 +75,8 @@ public class PlayerMove : MonoBehaviour
         {
             p_Speed += p_PowerUpSpeed * Time.deltaTime;
 
+            p_Disparo.SetActive(false);
+
             if(p_Speed >= p_MaxSpeed + p_PowerUpSpeed)
             {
                 p_PowerUpDuration -= 1f * Time.deltaTime;
@@ -92,7 +95,8 @@ public class PlayerMove : MonoBehaviour
             if (p_Speed <= p_SaveSpeed)
             {
                 p_Speed = p_SaveSpeed;
-                p_PowerUpDuration = 5f;
+                p_PowerUpDuration = p_PowerUpResetDuration;
+                p_Disparo.SetActive(true);
             }
         }
     }
