@@ -78,6 +78,7 @@ public class PlayerMove : MonoBehaviour
         {
             p_Explosion.transform.position = transform.position;
             p_Explosion.Play();
+            p_ExplosionSource.Play();
             this.gameObject.SetActive(false);
             Invoke("ResetPlayer", 2f);
         }

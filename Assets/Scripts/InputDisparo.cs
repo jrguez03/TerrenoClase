@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputDisparo : MonoBehaviour
@@ -22,6 +23,7 @@ public class InputDisparo : MonoBehaviour
     {
         //Vectores para el disparo.
         d_Impulso = Vector3.forward * d_Fuerza;
+
     }
 
     void Awake()
@@ -57,12 +59,22 @@ public class InputDisparo : MonoBehaviour
         {
             GameObject bala = d_Stack.ObtenerObjeto();
             GameObject bala2 = d_Stack.ObtenerObjeto();
+
             bala.transform.position = p_Canon.transform.position;
             bala2.transform.position = p_Canon2.transform.position;
+
+            float canonRotationY = p_Canon.transform.rotation.eulerAngles.y;
+            float canonRotationY2 = p_Canon2.transform.rotation.eulerAngles.y;
+
+            bala.transform.rotation = Quaternion.Euler(90f, canonRotationY, 0f);
+            bala2.transform.rotation = Quaternion.Euler(90f, canonRotationY2, 0f);
+
             bala.GetComponent<Rigidbody>().velocity = p_Canon.transform.forward * d_Fuerza;
             bala2.GetComponent<Rigidbody>().velocity = p_Canon2.transform.forward * d_Fuerza;
+
             bala.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
             bala2.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
+
             d_Source.Play();
         }
     }
