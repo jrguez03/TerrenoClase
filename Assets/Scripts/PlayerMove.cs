@@ -14,6 +14,12 @@ public class PlayerMove : MonoBehaviour
     public float p_MinSpeed = 20f;
     public float p_MaxSpeed = 120f;
     public float p_Aceleration = 20f;
+    public float p_PowerUpSpeed = 20f;
+    public float p_PowerUpResetDuration = 5f;
+    public float p_PowerUpDuration = 5f;
+    public float p_SaveSpeed;
+
+    bool p_PowerUp = false;
 
     Vector2 p_turn;
     Vector3 p_Movement;
@@ -62,6 +68,33 @@ public class PlayerMove : MonoBehaviour
                 p_Speed = p_MinSpeed;
             }
         }
+
+        //Aceleración de Power-up
+        if (p_PowerUp == true)
+        {
+            p_Speed += p_PowerUpSpeed * Time.deltaTime;
+
+            if(p_Speed >= p_MaxSpeed + p_PowerUpSpeed)
+            {
+                p_PowerUpDuration -= 1f * Time.deltaTime;
+                p_Speed = p_MaxSpeed + p_PowerUpSpeed;
+
+                if(p_PowerUpDuration <= 0f)
+                {
+                    p_PowerUp = false;
+                }
+            }
+        }
+        else if(p_PowerUpDuration <= 0f)
+        {
+            p_Speed -= p_PowerUpSpeed * Time.deltaTime;
+
+            if (p_Speed <= p_SaveSpeed)
+            {
+                p_Speed = p_SaveSpeed;
+                p_PowerUpDuration = 5f;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -89,5 +122,14 @@ public class PlayerMove : MonoBehaviour
         this.gameObject.SetActive(true);
         this.gameObject.transform.position = p_Spawn.transform.position;
         p_Speed = p_MinSpeed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Power-up"))
+        {
+            p_PowerUp = true;
+            p_SaveSpeed = p_Speed;
+        }
     }
 }

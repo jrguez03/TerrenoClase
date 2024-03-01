@@ -5,7 +5,7 @@ using UnityEngine;
 public class BalaBehaviour : MonoBehaviour
 {
     float b_Time = 0.0f;
-    [SerializeField] float b_LifeTime = 5f;
+    [SerializeField] float b_LifeTime = 2f;
     [SerializeField] AudioSource b_HitSource;
 
     // Update is called once per frame

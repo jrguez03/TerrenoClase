@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Bala player
   - Terreno
+  - Power-up
   layers:
   - Default
   - TransparentFX
