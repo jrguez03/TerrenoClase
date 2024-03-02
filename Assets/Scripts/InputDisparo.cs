@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputDisparo : MonoBehaviour
 {
     Disparo d_Stack;
+    Bomb_Pool b_Stack;
 
     [SerializeField] GameObject p_Canon;
     [SerializeField] GameObject p_Canon2;
+    [SerializeField] GameObject p_Canon3;
 
     [SerializeField] AudioSource d_Source;
 
@@ -29,6 +28,7 @@ public class InputDisparo : MonoBehaviour
     void Awake()
     {
         d_Stack = GetComponent<Disparo>();
+        b_Stack = GetComponent<Bomb_Pool>();
     }
 
     // Update is called once per frame
@@ -63,12 +63,6 @@ public class InputDisparo : MonoBehaviour
             bala.transform.position = p_Canon.transform.position;
             bala2.transform.position = p_Canon2.transform.position;
 
-            float canonRotationY = p_Canon.transform.rotation.eulerAngles.y;
-            float canonRotationY2 = p_Canon2.transform.rotation.eulerAngles.y;
-
-            bala.transform.rotation = Quaternion.Euler(90f, canonRotationY, 0f);
-            bala2.transform.rotation = Quaternion.Euler(90f, canonRotationY2, 0f);
-
             bala.GetComponent<Rigidbody>().velocity = p_Canon.transform.forward * d_Fuerza;
             bala2.GetComponent<Rigidbody>().velocity = p_Canon2.transform.forward * d_Fuerza;
 
@@ -76,6 +70,13 @@ public class InputDisparo : MonoBehaviour
             bala2.GetComponent<Rigidbody>().AddForce(d_Impulso * Time.deltaTime, ForceMode.Impulse);
 
             d_Source.Play();
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            GameObject bomba = b_Stack.ObtenerObjeto();
+
+            bomba.transform.position = p_Canon3.transform.position;
         }
     }
 }
