@@ -3,7 +3,7 @@ using UnityEngine;
 public class InputDisparo : MonoBehaviour
 {
     Disparo d_Stack;
-    Bomb_Pool b_Stack;
+    BombPool b_Stack;
 
     [SerializeField] GameObject p_Canon;
     [SerializeField] GameObject p_Canon2;
@@ -28,7 +28,7 @@ public class InputDisparo : MonoBehaviour
     void Awake()
     {
         d_Stack = GetComponent<Disparo>();
-        b_Stack = GetComponent<Bomb_Pool>();
+        b_Stack = GetComponent<BombPool>();
     }
 
     // Update is called once per frame
@@ -72,7 +72,7 @@ public class InputDisparo : MonoBehaviour
             d_Source.Play();
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             GameObject bomba = b_Stack.ObtenerObjeto();
 

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb_Pool : MonoBehaviour
+public class BombPool : MonoBehaviour
 {
-    [SerializeField] int b_MaxElements = 10;
+    [SerializeField] int d_MaxElements = 5;
     [SerializeField] GameObject b_ACrear;
 
     private Stack<GameObject> b_Stack;
-    public static Bomb_Pool instance;
+    public static BombPool instance;
 
     // Start is called before the first frame update
     void Start()
@@ -19,24 +19,25 @@ public class Bomb_Pool : MonoBehaviour
     void SetUpPool()
     {
         b_Stack = new Stack<GameObject>();
-        GameObject disparoCreado = null;
+        GameObject bombaCreada = null;
 
-        for (int i = 0; i < b_MaxElements; i++)
+        for (int i = 0; i < d_MaxElements; i++)
         {
-            disparoCreado = Instantiate(b_ACrear);
-            disparoCreado.SetActive(false);
-            b_Stack.Push(disparoCreado);
+            bombaCreada = Instantiate(b_ACrear);
+            bombaCreada.SetActive(false);
+            b_Stack.Push(bombaCreada);
         }
     }
 
     public GameObject ObtenerObjeto()
     {
         GameObject bomba = null;
+
         if (b_Stack.Count == 0)
         {
-            GameObject disparoCreado = Instantiate(b_ACrear);
-            b_Stack.Push(disparoCreado);
-            return disparoCreado;
+            GameObject bombaCreada = Instantiate(b_ACrear);
+            b_Stack.Push(bombaCreada);
+            return bombaCreada;
         }
         else
         {
@@ -46,7 +47,6 @@ public class Bomb_Pool : MonoBehaviour
 
         return bomba;
     }
-
 
     public void DevolverObjeto(GameObject bombaDevuelta)
     {

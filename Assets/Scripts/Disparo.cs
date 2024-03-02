@@ -32,6 +32,7 @@ public class Disparo : MonoBehaviour
     public GameObject ObtenerObjeto()
     {
         GameObject bala = null;
+
         if (d_Stack.Count == 0)
         {
             GameObject disparoCreado = Instantiate(d_ACrear);
@@ -46,7 +47,6 @@ public class Disparo : MonoBehaviour
 
         return bala;
     }
-
 
     public void DevolverObjeto(GameObject balaDevuelta)
     {
