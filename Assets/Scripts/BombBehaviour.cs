@@ -11,7 +11,7 @@ public class BombBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.gameObject.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -35,11 +35,13 @@ public class BombBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Terreno"))
         {
             b_BombSource.Play();
+            this.gameObject.transform.localScale = new Vector3 (10, 10, 10);
             this.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
             b_BombSource.Play();
+            this.gameObject.transform.localScale = new Vector3(10, 10, 10);
             this.gameObject.SetActive(false);
         }
     }

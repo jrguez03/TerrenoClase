@@ -15,6 +15,8 @@ public class InputDisparo : MonoBehaviour
     public float d_MinFuerza = 70f;
     public float d_MaxFuerza = 120f;
     public float d_AceleracionFuerza = 20f;
+    public float d_Cooldown = 2f;
+    private float d_FireTime = 0f;
 
     Vector3 d_Impulso;
     // Start is called before the first frame update
@@ -72,11 +74,13 @@ public class InputDisparo : MonoBehaviour
             d_Source.Play();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && Time.time > d_FireTime)
         {
             GameObject bomba = b_Stack.ObtenerObjeto();
 
             bomba.transform.position = p_Canon3.transform.position;
+
+            d_FireTime = Time.time + d_Cooldown;
         }
     }
 }
