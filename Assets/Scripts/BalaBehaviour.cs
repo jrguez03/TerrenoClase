@@ -28,12 +28,12 @@ public class BalaBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Terreno"))
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
             b_HitSource.Play();
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }

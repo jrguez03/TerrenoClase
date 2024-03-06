@@ -78,6 +78,8 @@ public class InputDisparo : MonoBehaviour
         {
             GameObject bomba = b_Stack.ObtenerObjeto();
 
+            bomba.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+
             bomba.transform.position = p_Canon3.transform.position;
 
             d_FireTime = Time.time + d_Cooldown;
