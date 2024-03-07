@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] GameObject p_Disparo;
     [SerializeField] AudioSource p_FlySource;
     [SerializeField] AudioSource p_ExplosionSource;
+    [SerializeField] TextMeshProUGUI p_BalasEditor;
 
     public float p_Speed = 20f;
     public float p_Sensitivity = 1f;
@@ -77,6 +79,8 @@ public class PlayerMove : MonoBehaviour
 
             p_Disparo.SetActive(false);
 
+            p_BalasEditor.text = "Turbo mode";
+
             if(p_Speed >= p_MaxSpeed + p_PowerUpSpeed)
             {
                 p_PowerUpDuration -= 1f * Time.deltaTime;
@@ -91,6 +95,10 @@ public class PlayerMove : MonoBehaviour
         else if(p_PowerUpDuration <= 0f)
         {
             p_Speed -= p_PowerUpSpeed * Time.deltaTime;
+
+            p_Disparo.SetActive(false);
+
+            p_BalasEditor.text = "Turbo mode";
 
             if (p_Speed <= p_SaveSpeed)
             {
